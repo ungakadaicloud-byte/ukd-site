@@ -3,8 +3,15 @@ import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import Home from './pages/Home'
 import ProductFlagship from './pages/ProductFlagship'
-import ProductEarlyAccess from './pages/ProductEarlyAccess'
+import ProductTesting from './pages/ProductTesting'
+import ProductDeveloping from './pages/ProductDeveloping'
 import { products } from './data/products'
+
+const templateFor = {
+  live: ProductFlagship,
+  testing: ProductTesting,
+  developing: ProductDeveloping,
+}
 
 export default function App() {
   return (
@@ -13,13 +20,10 @@ export default function App() {
       <div className="flex-1">
         <Routes>
           <Route path="/" element={<Home />} />
-          {products.map((p) => (
-            <Route
-              key={p.slug}
-              path={`/${p.slug}`}
-              element={p.status === 'live' ? <ProductFlagship /> : <ProductEarlyAccess />}
-            />
-          ))}
+          {products.map((p) => {
+            const Template = templateFor[p.status]
+            return <Route key={p.slug} path={`/${p.slug}`} element={<Template />} />
+          })}
         </Routes>
       </div>
       <Footer />
