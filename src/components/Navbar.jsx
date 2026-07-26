@@ -5,11 +5,16 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-50 bg-ink/90 backdrop-blur border-b border-ink-border">
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-        <Link to="/" className="flex items-center gap-2 group">
-          <span className="font-sign font-bold text-lg tracking-tight text-paper">
+        <Link to="/" className="flex items-center gap-2.5 group">
+          <img
+            src="/logo.png"
+            alt="UNGA KADAI DIGITAL"
+            className="h-8 w-auto"
+          />
+          <span className="font-sign font-bold text-lg tracking-tight text-paper hidden sm:inline">
             UNGA KADAI
           </span>
-          <span className="text-gold font-sign font-bold text-lg">DIGITAL</span>
+          <span className="text-gold font-sign font-bold text-lg hidden sm:inline">DIGITAL</span>
         </Link>
         {location.pathname !== '/' && (
           <Link
