@@ -23,19 +23,27 @@ export default function ProductFlagship() {
       {/* Hero */}
       <section className="max-w-6xl mx-auto px-6 pt-16 pb-16 grid md:grid-cols-2 gap-12 items-center">
         <div>
-          <p className={`font-sign text-xs tracking-[0.25em] uppercase ${accentText[product.accent]} mb-3`}>
-            {product.system}
-          </p>
+          <div className="flex items-center gap-2 mb-3">
+            <span className="w-2 h-2 rounded-full bg-teal" />
+            <p className={`font-sign text-xs tracking-[0.25em] uppercase ${accentText[product.accent]}`}>
+              {product.system} · Live
+            </p>
+          </div>
+          {product.logo && (
+            <img src={product.logo} alt={`${product.name} logo`} className="h-16 w-auto mb-4" />
+          )}
           <h1 className="font-display text-4xl sm:text-5xl font-semibold text-paper leading-tight mb-4">
             {product.name}
           </h1>
           <p className="text-xl text-paper/70 mb-2 font-medium">{product.tagline}</p>
           <p className="text-paper/60 leading-relaxed mb-8">{product.problem}</p>
           <a
-            href="#demo"
+            href={product.liveUrl}
+            target="_blank"
+            rel="noopener noreferrer"
             className={`inline-block font-sign font-semibold rounded-sm px-6 py-3 transition-colors ${accentButton[product.accent]}`}
           >
-            {product.demoCta}
+            {product.demoCta} →
           </a>
         </div>
         <div className="signboard rounded-sm p-8">
@@ -68,20 +76,28 @@ export default function ProductFlagship() {
         </div>
       </section>
 
-      {/* Demo request */}
-      <section id="demo" className="border-t border-ink-border">
-        <div className="max-w-lg mx-auto px-6 py-20">
-          <h2 className="font-display text-2xl font-semibold text-paper mb-2 text-center">
-            {product.demoCta}
+      {/* Live CTA repeat + optional enquiry */}
+      <section className="border-t border-ink-border">
+        <div className="max-w-lg mx-auto px-6 py-20 text-center">
+          <h2 className="font-display text-2xl font-semibold text-paper mb-3">
+            {product.name} is live and in real use.
           </h2>
-          <p className="text-sm text-paper/50 text-center mb-8">
-            Tell us a bit about your workshop and we'll get in touch.
+          <p className="text-sm text-paper/50 mb-8">
+            Visit the product directly, or leave your details if you'd rather we reach out first.
           </p>
+          <a
+            href={product.liveUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`inline-block font-sign font-semibold rounded-sm px-6 py-3 mb-10 transition-colors ${accentButton[product.accent]}`}
+          >
+            {product.demoCta} →
+          </a>
           <LeadForm
             product={product}
-            ctaLabel={product.demoCta}
-            statusValue="demo_request"
-            accentClass={accentButton[product.accent]}
+            ctaLabel="Ask us to reach out instead"
+            statusValue="contact_request"
+            accentClass="bg-ink-light border border-ink-border text-paper hover:border-gold"
           />
         </div>
       </section>
